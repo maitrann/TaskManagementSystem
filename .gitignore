@@ -1,0 +1,20 @@
+# ===== Visual Studio =====
+.vs/
+bin/
+obj/
+
+# ===== .NET =====
+*.user
+*.suo
+*.cache
+*.log
+
+# ===== Angular / Node =====
+node_modules/
+dist/
+.angular/
+
+
+# ===== OS =====
+.DS_Store
+Thumbs.db
