@@ -40,7 +40,9 @@ export class AuthPage {
     if (this.isLogin) {
       this.authService.login(payload).subscribe({
         next: (res: any) => {
-          this.authService.saveToken(res.token);
+          // this.authService.saveToken(res.token);
+          // this.authService.saveUser(res.username);
+          this.authService.setSession(res.token, res.username);
           this.router.navigate(['/tasks']);
         },
         error: () => {

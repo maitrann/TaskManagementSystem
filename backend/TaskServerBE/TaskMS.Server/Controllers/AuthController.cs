@@ -43,7 +43,7 @@ namespace TaskMS.Server.Controllers
             try
             {
                 var token = await _authService.Login(dto);
-                return Ok(new { token });
+                return Ok(new { token, username = dto.Username });
             }
             catch (Exception ex)
             {
