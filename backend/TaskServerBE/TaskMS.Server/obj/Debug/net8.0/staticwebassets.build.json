@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "o0kxKz2TCRLvRKem228I7bumRS//IxqfYEBtTFA2CAQ=",
+  "Source": "TaskMS.Server",
+  "BasePath": "_content/TaskMS.Server",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}

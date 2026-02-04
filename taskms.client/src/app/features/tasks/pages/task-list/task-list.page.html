@@ -1,0 +1,188 @@
+<div class="container mt-4">
+
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <h2>📝 Task Management</h2>
+    <button class="btn btn-primary" (click)="openCreateModal()">
+      + New Task
+    </button>
+    <button class="btn btn-outline-danger btn-sm" (click)="logout()">
+      Logout
+    </button>
+  </div>
+
+  <div *ngIf="loading" class="text-center my-4">
+    <div class="spinner-border"></div>
+  </div>
+<div class="row g-2 mb-3">
+  <div class="col-md-6">
+    <input
+      type="text"
+      class="form-control"
+      placeholder="Search title..."
+      [(ngModel)]="searchText"
+      (ngModelChange)="resetPage()"
+    />
+  </div>
+
+  <div class="col-md-3">
+    <select
+      class="form-select"
+      [(ngModel)]="statusFilter"
+      (ngModelChange)="resetPage()"
+    >
+      <option value="">All status</option>
+      <option value="0">Todo</option>
+      <option value="1">In Progress</option>
+      <option value="2">Done</option>
+    </select>
+  </div>
+</div>
+
+  <table class="table table-hover align-middle" *ngIf="tasks.length > 0">
+    <thead class="table-light">
+      <tr>
+        <th>Title</th>
+        <th>Status</th>
+        <th style="width: 180px">Actions</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr *ngFor="let task of paginatedTasks">
+        <td>
+          <strong>{{ task.title }}</strong><br />
+          <small class="text-muted">{{ task.description }}</small>
+        </td>
+
+        <td>
+          <select
+            class="form-select form-select-sm"
+            [ngClass]="getStatusClass(task.status)"
+            (change)="changeStatus(task, $event)">
+            <option value="0" [selected]="task.status === 0">Todo</option>
+            <option value="1" [selected]="task.status === 1">In Progress</option>
+            <option value="2" [selected]="task.status === 2">Done</option>
+          </select>
+        </td>
+
+        <td>
+          <button
+            class="btn btn-sm btn-outline-secondary me-1"
+            (click)="openEditModal(task)"
+          >
+            Edit
+          </button>
+          <button
+            class="btn btn-sm btn-outline-danger"
+            (click)="deleteTask(task.id!)"
+          >
+            Delete
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+<nav *ngIf="totalPages > 1" class="mt-3">
+  <ul class="pagination justify-content-center">
+
+    <li class="page-item" [class.disabled]="currentPage === 1">
+      <button class="page-link" (click)="changePage(currentPage - 1)">
+        Prev
+      </button>
+    </li>
+
+    <li
+      class="page-item"
+      *ngFor="let p of [].constructor(totalPages); let i = index"
+      [class.active]="currentPage === i + 1"
+    >
+      <button class="page-link" (click)="changePage(i + 1)">
+        {{ i + 1 }}
+      </button>
+    </li>
+
+    <li class="page-item" [class.disabled]="currentPage === totalPages">
+      <button class="page-link" (click)="changePage(currentPage + 1)">
+        Next
+      </button>
+    </li>
+
+  </ul>
+</nav>
+
+  <div *ngIf="!loading && tasks.length === 0" class="text-center text-muted">
+    No tasks yet
+  </div>
+</div>
+
+<!-- MODAL -->
+<div class="modal fade" id="taskModal" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">
+          {{ editingTask ? 'Edit Task' : 'Create Task' }}
+        </h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+
+      <div class="modal-body">
+        <form #taskForm="ngForm" novalidate (ngSubmit)="$event.preventDefault()">
+
+        <div class="mb-3">
+          <label class="form-label"><span class="text-danger">*</span>Title</label>
+
+          <input
+              type="text"
+              class="form-control"
+              name="title"
+              [(ngModel)]="modalTask.title"
+              required
+              #title="ngModel"
+              [class.is-invalid]="title.invalid && (title.touched || title.dirty)"
+            />
+            <div class="invalid-feedback">
+              Title is required
+            </div>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Description</label>
+          <textarea
+            class="form-control"
+            rows="3"
+            name="description"
+            [(ngModel)]="modalTask.description"
+          ></textarea>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Status</label>
+          <select class="form-select" name="status" [(ngModel)]="modalTask.status">
+            <option [ngValue]="0">Todo</option>
+            <option [ngValue]="1">In Progress</option>
+            <option [ngValue]="2">Done</option>
+          </select>
+        </div>
+      </form>
+      </div>
+
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="btn btn-secondary"
+          data-bs-dismiss="modal"
+          (click)="resetModalForm(taskForm)">
+          Cancel
+        </button>
+        <button
+          type="button"
+          class="btn btn-primary"
+          (click)="saveTask()"
+          [disabled]="taskForm.invalid">
+          Save
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
