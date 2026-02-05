@@ -30,6 +30,13 @@ hoặc URL swagger https://localhost:7278/swagger/index.html
   - Quay lại bảo đảm đang đứng ở cd frontend\taskms.client
   - ng serve -o
   - => http://localhost:4200
+  - Nếu vẫn chưa thể chạy có thể tham khảo thêm 2.3/
+
+  2.3/ Trường hợp đã thao tác ở 2.2 nhưng vẫn chưa chạy được FE:
+  - npm install @angular-devkit/build-angular --save-dev
+  - npx ng serve -o
+
+Nếu vẫn chưa thao tác được vui lòng liên hệ Zalo: 0866153730
 
 Authentication
 - Backend sử dụng JWT
