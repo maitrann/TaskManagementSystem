@@ -3,22 +3,23 @@ Hệ thống quản lý công việc đơn giản gồm Backend (.NET Web API) v
 Database sử dụng Supabase (PostgreSQL) và đã cấu hình sẵn.
 
 Công nghệ sử dụng
-Backend: ASP.NET Web API, Entity Framework Core, JWT
-Frontend: Angular
-Database: Supabase (PostgreSQL)
+- Backend: ASP.NET Web API, Entity Framework Core, JWT
+- Frontend: Angular
+- Database: Supabase (PostgreSQL)
 
 Hướng dẫn chạy lệnh CMD cho Project:
 
 1/ Chạy Backend:
-cd backend\TaskServerBE\TaskMS.Server
-dotnet run --urls "https://localhost:7278"
-=> https://localhost:7278
+- cd backend\TaskServerBE\TaskMS.Server
+- dotnet run --urls "https://localhost:7278"
+- => https://localhost:7278
 hoặc URL swagger https://localhost:7278/swagger/index.html
+
 2/ Chạy Frontend:
-cd frontend\taskms.client
-npm install
-ng serve
-=> http://localhost:4200
+- cd frontend\taskms.client
+- npm install
+- ng serve
+- => http://localhost:4200
 
 Authentication
 - Backend sử dụng JWT
