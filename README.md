@@ -7,7 +7,8 @@ Backend: ASP.NET Web API, Entity Framework Core, JWT
 Frontend: Angular
 Database: Supabase (PostgreSQL)
 
-Hướng dẫn chạy lệnh CMD cho Project
+Hướng dẫn chạy lệnh CMD cho Project:
+
 1/ Chạy Backend:
 cd backend\TaskServerBE\TaskMS.Server
 dotnet run --urls "https://localhost:7278"
