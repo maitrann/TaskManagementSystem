@@ -17,9 +17,19 @@ hoặc URL swagger https://localhost:7278/swagger/index.html
 
 2/ Chạy Frontend:
 - cd frontend\taskms.client
-- npm install
-- ng serve
-- => http://localhost:4200
+
+  2.1/ Trường hợp đã có Angular CLI:
+  - ng version (Để kiểm tra, nếu chắn chắn có rồi thì bỏ qua bước này)
+  - npm install
+  - ng serve -o
+  - => http://localhost:4200
+
+  2.2/ Trường hợp chưa có Angular CLI:
+  - npm install -g @angular/cli
+  - ng version (Kiểm tra lại) => Nếu thấy hiện phiên bản Angular CLI và Node (Thành công)
+  - Quay lại bảo đảm đang đứng ở cd frontend\taskms.client
+  - ng serve -o
+  - => http://localhost:4200
 
 Authentication
 - Backend sử dụng JWT
